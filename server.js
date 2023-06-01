@@ -25,6 +25,7 @@ app.use(express.static("public"));
 
 
 
+//DISPLAY DATA FINDS ON DATABASE INTO TABLE
 app.get('/todolist', async (req, res) =>{
 
     try {
@@ -40,9 +41,41 @@ app.get('/todolist', async (req, res) =>{
 
 })
 
+app.get('/', async (req, res)=>{
+
+    const getall = await Create.find();
+    res.json(getall);
+
+
+})
 
 
 
+
+
+
+// DELETE DATA SELECTED IN TABLE
+app.post('/todolist/:id', async(req, res) => {
+   
+    const idToDelete = req.params.id;
+    console.log(idToDelete)
+    try {
+
+        await Create.deleteOne({ _id: idToDelete });
+      
+
+    }catch(error){
+
+        res.status(500).json({ message: err.message })
+    }
+    res.redirect('/todolist')
+})
+
+
+
+
+
+// CREATING A TODO
 app.post('/todolist', async(req, res) => {
 
     const Newtodo = new Create({
@@ -61,9 +94,11 @@ app.post('/todolist', async(req, res) => {
 
         res.status(400).json({ message: error.message })
     }
-
     res.redirect('/todolist');
-    
 })
+
+
+
+
 
 

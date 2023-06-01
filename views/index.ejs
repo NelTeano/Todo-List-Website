@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+
+    <title>Todo List</title>
+  
+</head>
+<body>
+
+   
+
+
+ 
+
+    <div class="container"> 
+
+        
+    <div class="listbox">
+
+       
+        <table>
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Duedate</th>
+                <th>Date Created</th>
+                <th>Progress</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <% for (let i = 0; i < todos.length; i++) { %>
+                  <tr>
+                    
+                    <td><%= todos[i].title %></td>
+                    <td><%= todos[i].description %></td>
+                    <td><%= todos[i].duedate %></td>
+                    <td><%= todos[i].date %></td>
+
+                    <form method="post" action="/todolist/<%= todos[i]._id %>">
+                    <td><input id="progressbox" type="submit" value="✔">
+                    </form>
+                    </td>
+                  </tr>
+                <% } %>
+              </tr>
+            <tbody>  
+        </table>
+    </div>
+
+       <div class="inputbox">
+        <form action="" method="post">
+            <label for="Title">Title:</label><br>
+                <input type="text"  minlength="8" maxlength="47" name="title" id="titlebox" required><br><br>
+            <label for="Description">Description:</label><br>
+                <input type="text" name="desc" id="descbox" required><br>
+            <label for="Duedate">Duedate:</label><br>
+                <input type="date" name="due" id="duebox" required><br>
+                <input id="addBTN" type="submit" value="Add">
+        </form>
+        </div>
+    </div>
+
+
+   
+
+
+ 
+
+
+    
+</body>
+</html>
